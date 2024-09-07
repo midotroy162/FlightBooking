@@ -1,7 +1,7 @@
 import { Express } from 'express';
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
-import { paths, schemas, tags } from './docs/swagger';
+import { paths, schemas, tags } from './docs';
 
 export const swaggerSetup = (app: Express) => {
   const swaggerOptions = {

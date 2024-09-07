@@ -1,4 +1,4 @@
-import { userSwagger } from './userSwagger';
+import { userSwagger } from './swagger/userSwagger';
 
 export const paths = {
   ...userSwagger.paths,
