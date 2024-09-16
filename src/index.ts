@@ -8,6 +8,9 @@ const app: Express = express();
 
 app.use(morgan('dev'));
 
+// Middleware to parse JSON bodies
+app.use(express.json());
+
 swaggerSetup(app);
 
 /**
