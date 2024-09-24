@@ -15,5 +15,13 @@ export class AuthController {
       
       const token = createToken(user.id);
       res.status(201).json({user:user,token:token});     
+  }
+  async login(req: Request, res: Response) {
+    const user = await this.authService.login(req.body);
+    if (!user) {
+      res.json({message:""})
     }
+    const token = createToken(user.id);
+      res.status(201).json({user:user,token:token});
+  }
 }
