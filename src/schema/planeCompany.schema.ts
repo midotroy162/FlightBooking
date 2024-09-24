@@ -2,14 +2,6 @@ import { pgTable, varchar } from 'drizzle-orm/pg-core';
 import { baseModel } from './common';
 import { relations } from 'drizzle-orm';
 
-// - id primary key
-// - company_name
-// - company_code unique
-// - company_email unique
-// - phone_number
-// - created_at
-// - updated_at
-
 export const planeCompanies = pgTable('plane_companies', {
   ...baseModel,
   name: varchar('name', { length: 100 }),
