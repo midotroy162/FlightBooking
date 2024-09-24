@@ -8,6 +8,13 @@
       "when": 1726502306710,
       "tag": "0000_modern_goblin_queen",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1727208833442,
+      "tag": "0001_shocking_wolfpack",
+      "breakpoints": true
     }
   ]
 }
