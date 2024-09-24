@@ -13,8 +13,13 @@ export class UserModel implements IUserModel {
       where: eq(users.id, id),
     })) as IUser | null;
   }
+  async getUserByEmail(email: string): Promise<IUser | null> {
+    return (await db.query.users.findFirst({
+      where: eq(users.email, email),
+    })) as IUser | null;
+  }
   async createUser(user: IUser): Promise<IUser> {
-    return (await db.insert(users).values(user).execute())[0] as IUser;
+    return (await db.insert(users).values(user).returning().execute())[0] as IUser;
   }
   async updateUser(id: number, user: IUser): Promise<IUser | null> {
     return (await db.update(users).set(user).where(eq(users.id, id)).execute())[0] as IUser | null;
