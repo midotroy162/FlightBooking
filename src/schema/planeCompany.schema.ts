@@ -1,6 +1,7 @@
 import { pgTable, varchar } from 'drizzle-orm/pg-core';
 import { baseModel } from './common';
 import { relations } from 'drizzle-orm';
+import { planes } from './plane.schema';
 
 export const planeCompanies = pgTable('plane_companies', {
   ...baseModel,
@@ -10,4 +11,6 @@ export const planeCompanies = pgTable('plane_companies', {
   phoneNumber: varchar('phone_number', { length: 20 }),
 });
 
-export const planeCompanyRelations = relations(planeCompanies, ({}) => ({}));
+export const planeCompanyRelations = relations(planeCompanies, ({ many }) => ({
+  planes: many(planes),
+}));
