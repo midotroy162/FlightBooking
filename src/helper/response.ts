@@ -5,17 +5,18 @@ export function createServiceResponse<T>(
   statusCode: number,
   message: string,
   data: T,
-  AccessToken?: string,
-  RefreshToken?: string,
+  accessToken?: string,
+  refreshToken?: string,
 ): ServiceResponse<T> {
-  return { success, statusCode, message, data, AccessToken, RefreshToken };
+  return { success, statusCode, message, data, accessToken, refreshToken };
 }
 
 export function createApiResponse<T>(
-  status: ResponseStatus,
+  success: boolean,
   statusCode: number,
   message: string,
   data: T | null = null,
 ): ResponsePayload<T> {
+  let status: ResponseStatus = success ? 'success' : 'error';
   return { status, statusCode, message, data };
 }

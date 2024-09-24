@@ -9,7 +9,7 @@ export function validate<T extends object>(validator: BaseValidator<T>) {
       next();
     } catch (error) {
       if (error instanceof ValidationException) {
-        res.status(422).json(createApiResponse('error', 422, error.errors?.pop() as string, null));
+        res.status(422).json(createApiResponse(false, 422, error.errors?.pop() as string, null));
         return;
       }
       next(error);
