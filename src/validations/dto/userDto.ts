@@ -1,5 +1,6 @@
-import { IsString, IsEmail, MinLength, IsStrongPassword, matches } from 'class-validator';
+import { IsString, IsEmail, MinLength, IsStrongPassword,IsMobilePhone } from 'class-validator';
 import { Expose } from 'class-transformer';
+import {IsPasswordMatching } from '../decorators/matchingPassword';
 
 export class CreateUserDto {
   @Expose()
@@ -20,6 +21,16 @@ export class CreateUserDto {
   @IsString()
   @IsStrongPassword()
   password!: string;
+  @Expose()
+  @IsPasswordMatching('password')
+  confirmPassword!: string;
+
+  @Expose()
+  @IsMobilePhone('ar-EG',{ strictMode: true },
+  {
+    message: 'Phone number must be valid for Egypt',
+  })
+  phoneNumber!: string;
 
   @Expose()
   username!: string;
