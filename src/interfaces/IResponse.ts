@@ -14,4 +14,6 @@ export interface ResponsePayload<T> {
   statusCode: number;
   message: string;
   data: T | null;
+  accessToken?: string;
+  refreshToken?: string;
 }

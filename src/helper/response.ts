@@ -16,7 +16,8 @@ export function createApiResponse<T>(
   statusCode: number,
   message: string,
   data: T | null = null,
+  accessToken?: string
 ): ResponsePayload<T> {
   let status: ResponseStatus = success ? 'success' : 'error';
-  return { status, statusCode, message, data };
+  return { status, statusCode, message, data,accessToken };
 }

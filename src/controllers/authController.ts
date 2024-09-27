@@ -19,8 +19,7 @@ export class AuthController {
       accessToken: token,
     } = await this.authService.signup(req.body);
 
-    return res.status(statusCode).json(createApiResponse(success, statusCode, message, data));
-    res.status(statusCode).json({ user: data, token: token });
+    return res.status(statusCode).json(createApiResponse(success, statusCode, message, data,token));
   }
   async login(req: Request, res: Response) {
     const {
@@ -30,6 +29,6 @@ export class AuthController {
       data,
       accessToken: token,
     } = await this.authService.login(req.body);
-    return res.status(statusCode).json(createApiResponse(success, statusCode, message, data));
+    return res.status(statusCode).json(createApiResponse(success, statusCode, message, data,token));
   }
 }
