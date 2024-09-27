@@ -2,9 +2,9 @@ export interface ServiceResponse<T> {
   success: boolean;
   statusCode: number;
   message: string;
-  data: T;
-  AccessToken?: string;
-  RefreshToken?: string;
+  data: T | null;
+  accessToken?: string;
+  refreshToken?: string;
 }
 
 export type ResponseStatus = 'success' | 'error';
@@ -14,4 +14,6 @@ export interface ResponsePayload<T> {
   statusCode: number;
   message: string;
   data: T | null;
+  accessToken?: string;
+  refreshToken?: string;
 }
