@@ -15,6 +15,13 @@
       "when": 1727208833442,
       "tag": "0001_shocking_wolfpack",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1727555799562,
+      "tag": "0002_silent_dreadnoughts",
+      "breakpoints": true
     }
   ]
 }
