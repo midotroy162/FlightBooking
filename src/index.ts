@@ -1,6 +1,8 @@
 import express, { Express } from 'express';
 import morgan from 'morgan';
 import config from './config';
+import ApiError from './helper/apiError';
+import globalError from './middlewares/errorMiddleware';
 import routes from './routes';
 import { swaggerSetup } from './swagger.config';
 
@@ -36,7 +38,16 @@ swaggerSetup(app);
 app.get('/', (req, res) => {
   res.json({ message: 'Hello, World!' });
 });
-
 app.use('/', routes);
+// Error handling
+app.all("*", (req, res, next) => {
+  // create error and send it to error handling middleware
+  // const err = new Error("cant find this route:"+ req.originalUrl);
+  // next(err.message);
+  next(new ApiError(`cant find this route:${req.originalUrl}`, 400));
+});
+//globle error inside express
+app.use(globalError);
+
 
 app.listen(config.port, () => console.log(`Server running on port ${config.port}`));
