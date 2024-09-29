@@ -8,7 +8,7 @@ import createToken from '../helper/createToken';
 import { IPlaneCompanyModel } from '../interfaces/IPlaneCompanyModel';
 import { IPlaneCompany } from '../interfaces/IPlaneCompany';
 import { PlaneCompanyModel } from '../models/planeCompanyModel';
-// import { compareSync } from 'bcrypt';
+import  bcrypt  from 'bcrypt';
 
 export class AuthService implements IAuthService {
   private userModel: IUserModel;
@@ -16,6 +16,8 @@ export class AuthService implements IAuthService {
     this.userModel = userModel;
   }
   async signup(data: IUser): Promise<ServiceResponse<IUser>> {
+    const hashedPassword = await bcrypt.hash(data.password, 10);
+    data.password = hashedPassword;
     let user = await this.userModel.createUser(data);
     if (!user) {
       return createServiceResponse(false, 400, 'User creation failed', {} as IUser);
@@ -25,7 +27,7 @@ export class AuthService implements IAuthService {
   }
   async login(data: IUser): Promise<ServiceResponse<IUser>> {
     const user = await this.userModel.getUserByEmail(data.email);
-    if (!user || !(data.password === user.password))
+    if (!user || !(await bcrypt.compare(data.password, user.password)))
       return createServiceResponse(false, 404, 'Invalid login credentials', {} as IUser);
     const token = createToken(user.id);
     return createServiceResponse(true, 200, 'User logged in successfully', user, token);
