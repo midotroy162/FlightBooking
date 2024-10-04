@@ -25,3 +25,5 @@ export interface IUserService {
   updateUser(id: number, user: IUser): Promise<IUser | null>;
   deleteUser(id: number): Promise<void>;
 }
+
+export interface IUserResponse extends Omit<IUser, 'password'> {}
