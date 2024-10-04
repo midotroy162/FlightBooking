@@ -20,25 +20,30 @@ export const authSwagger = {
                   firstName: {
                     type: 'string',
                     description: 'First name of the user',
+                    example: 'John',
                   },
                   lastName: {
                     type: 'string',
                     description: 'Last name of the user',
+                    example: 'Doe',
                   },
                   email: {
                     type: 'string',
                     format: 'email',
                     description: 'User email address',
+                    example: 'john@mail.com',
                   },
                   password: {
                     type: 'string',
                     format: 'password',
                     description: 'User password',
+                    example: 'Password@123',
                   },
-                  phone: {
+                  phoneNumber: {
                     type: 'string',
                     format: 'phone',
                     description: 'User phone',
+                    example: '+201022222221',
                   },
                 },
               },
@@ -77,11 +82,13 @@ export const authSwagger = {
                     type: 'string',
                     format: 'email',
                     description: 'User email address',
+                    example: 'john@mail.com',
                   },
                   password: {
                     type: 'string',
                     format: 'password',
                     description: 'User password',
+                    example: 'Password@123',
                   },
                 },
               },
