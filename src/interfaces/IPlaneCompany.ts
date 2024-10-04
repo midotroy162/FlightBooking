@@ -18,3 +18,8 @@ export interface IPlaneCompany {
   createdAt: Date;
   updatedAt: Date;
 }
+
+export interface IPlaneCompanyModel {
+  createPlaneCompany(planeCompany: IPlaneCompany): Promise<IPlaneCompany>;
+  getPlaneCompanyByEmail(email: string): Promise<IPlaneCompany | null>;
+}

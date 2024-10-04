@@ -1,6 +1,6 @@
 import { IUser } from '../interfaces/IUser';
-import { IUserModel } from '../interfaces/IUserModel';
-import { IUserService } from '../interfaces/IUserService';
+import { IUserModel } from '../interfaces/IUser';
+import { IUserService } from '../interfaces/IUser';
 import { UserModel } from '../models/userModel';
 
 export class UserService implements IUserService {
