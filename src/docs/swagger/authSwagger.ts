@@ -39,6 +39,12 @@ export const authSwagger = {
                     description: 'User password',
                     example: 'Password@123',
                   },
+                  ConformPassword: {
+                    type: 'string',
+                    format: 'password',
+                    description: 'Confirm user password',
+                    example: 'Password@123',
+                  },
                   phoneNumber: {
                     type: 'string',
                     format: 'phone',
