@@ -1,3 +1,5 @@
+import { ServiceResponse } from './IResponse';
+
 export interface IUser {
   id: number;
   firstName: string;
@@ -19,10 +21,10 @@ export interface IUserModel {
 }
 
 export interface IUserService {
-  getAllUsers(): Promise<IUser[]>;
-  getUserById(id: number): Promise<IUser | null>;
-  createUser(user: IUser): Promise<IUser>;
-  updateUser(id: number, user: IUser): Promise<IUser | null>;
+  getAllUsers(): Promise<ServiceResponse<IUser[]>>;
+  getUserById(id: number): Promise<ServiceResponse<IUser | null>>;
+  createUser(user: IUser): Promise<ServiceResponse<IUser>>;
+  updateUser(id: number, user: IUser): Promise<ServiceResponse<IUser | null>>;
   deleteUser(id: number): Promise<void>;
 }
 
