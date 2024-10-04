@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { IUserService } from '../interfaces/IUserService';
+import { IUserService } from '../interfaces/IUser';
 import { UserService } from '../services/userService';
 
 export class UserController {

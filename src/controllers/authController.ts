@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { IAuthService, IPlaneCompanyService } from '../interfaces/IAuthService';
+import { IAuthService, IPlaneCompanyService } from '../interfaces/IAuth';
 import { IUser } from '../interfaces/IUser';
 import { AuthPlaneCompanyService, AuthService } from '../services/authService';
 import { createApiResponse } from '../helper/response';

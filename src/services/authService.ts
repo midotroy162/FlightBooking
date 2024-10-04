@@ -1,11 +1,11 @@
 import { IUser } from '../interfaces/IUser';
-import { IUserModel } from '../interfaces/IUserModel';
-import { IAuthService, IPlaneCompanyService } from '../interfaces/IAuthService';
+import { IUserModel } from '../interfaces/IUser';
+import { IAuthService, IPlaneCompanyService } from '../interfaces/IAuth';
 import { UserModel } from '../models/userModel';
 import { ServiceResponse } from '../interfaces/IResponse';
 import { createServiceResponse } from '../helper/response';
 import createToken from '../helper/createToken';
-import { IPlaneCompanyModel } from '../interfaces/IPlaneCompanyModel';
+import { IPlaneCompanyModel } from '../interfaces/IPlaneCompany';
 import { IPlaneCompany } from '../interfaces/IPlaneCompany';
 import { PlaneCompanyModel } from '../models/planeCompanyModel';
 import  bcrypt  from 'bcrypt';

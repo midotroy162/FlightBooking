@@ -1,7 +1,7 @@
 import { eq } from 'drizzle-orm';
 import { db } from '../database';
 import { IPlaneCompany } from '../interfaces/IPlaneCompany';
-import { IPlaneCompanyModel } from '../interfaces/IPlaneCompanyModel';
+import { IPlaneCompanyModel } from '../interfaces/IPlaneCompany';
 import { planeCompanies } from '../schema';
 
 export class PlaneCompanyModel implements IPlaneCompanyModel {
