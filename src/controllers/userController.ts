@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
 import { IUserService } from '../interfaces/IUser';
 import { UserService } from '../services/userService';
+import { createApiResponse } from '../helper/response';
+import { UserResponse } from '../responses/userResponse';
 
 export class UserController {
   private userService: IUserService;
@@ -9,7 +11,9 @@ export class UserController {
   }
 
   async getAllUsers(req: Request, res: Response) {
-    const users = await this.userService.getAllUsers();
-    return res.json(users);
+    const { statusCode, success, message, data } = await this.userService.getAllUsers();
+    return res.json(
+      createApiResponse(success, statusCode, message, new UserResponse(null, data).getUsers()),
+    );
   }
 }
