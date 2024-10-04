@@ -2,8 +2,10 @@ import { IUser, IUserResponse } from '../interfaces/IUser';
 
 export class UserResponse {
   private user = {} as IUser;
-  constructor(user: IUser | null) {
+  private users: IUser[] = [];
+  constructor(user: IUser | null, users: IUser[] | null = []) {
     this.user = user ?? ({} as IUser);
+    this.users = users ?? ([] as IUser[]);
   }
 
   public getUser(): IUserResponse {
@@ -19,5 +21,9 @@ export class UserResponse {
       createdAt: this.user.createdAt,
       updatedAt: this.user.updatedAt,
     };
+  }
+
+  public getUsers(): IUserResponse[] {
+    return this.users.map((user) => new UserResponse(user).getUser());
   }
 }
