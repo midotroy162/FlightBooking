@@ -9,8 +9,10 @@ import { IPlaneCompanyModel } from '../interfaces/IPlaneCompany';
 import { IPlaneCompany } from '../interfaces/IPlaneCompany';
 import { PlaneCompanyModel } from '../models/planeCompanyModel';
 import  bcrypt  from 'bcrypt';
-
+import AccessToken from '../helper/createToken';
+  const accessToken = new AccessToken();
 export class AuthService implements IAuthService {
+
   private userModel: IUserModel;
   constructor(userModel: IUserModel = new UserModel()) {
     this.userModel = userModel;
@@ -22,14 +24,14 @@ export class AuthService implements IAuthService {
     if (!user) {
       return createServiceResponse(false, 400, 'User creation failed', {} as IUser);
     }
-    const token = createToken(user.id);
+    const token = accessToken.createAccessToken(user.id);
     return createServiceResponse(true, 200, 'User created successfully', user, token);
   }
   async login(data: IUser): Promise<ServiceResponse<IUser>> {
     const user = await this.userModel.getUserByEmail(data.email);
     if (!user || !(await bcrypt.compare(data.password, user.password)))
       return createServiceResponse(false, 404, 'Invalid login credentials', {} as IUser);
-    const token = createToken(user.id);
+    const token = accessToken.createAccessToken(user.id);
     return createServiceResponse(true, 200, 'User logged in successfully', user, token);
   }
 }
@@ -50,7 +52,7 @@ export class AuthPlaneCompanyService implements IPlaneCompanyService {
       );
     }
     console.log('planeCompany: ', planeCompany);
-    const token = createToken(planeCompany.id);
+    const token = accessToken.createAccessToken(planeCompany.id);
     return createServiceResponse(
       true,
       200,
@@ -63,7 +65,7 @@ export class AuthPlaneCompanyService implements IPlaneCompanyService {
     const planeCompany = await this.planeCompanyModel.getPlaneCompanyByEmail(data.email);
     if (!planeCompany || !(data.password === planeCompany.password))
       return createServiceResponse(false, 404, 'Invalid login credentials', {} as IPlaneCompany);
-    const token = createToken(planeCompany.id);
+    const token = accessToken.createAccessToken(planeCompany.id);
     return createServiceResponse(
       true,
       200,
