@@ -7,6 +7,8 @@ export default {
   port: process.env.PORT || 3000,
   databaseUrl: process.env.DATABASE_URL as string,
   databaseDebug: process.env.DATABASE_DEBUG === 'true',
-  jwtSecretKey: process.env.JWT_SECRET as string,
-  jwtExpireDate:process.env.JWT_EXPIRES_IN as string
+  jwtAccessSecretKey: process.env.JWT_ACCESS_SECRET as string,
+  jwtRefreshSecretKey: process.env.JWT_REFRESH_SECRET as string,
+  jwtAccessExpireDate:process.env.JWT_ACCESS_EXPIRES_IN as string,
+  jwtRefreshExpireDate:process.env.JWT_REFRESH_EXPIRES_IN as string,
 };
