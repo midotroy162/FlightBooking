@@ -1,30 +1,13 @@
-import { eq } from 'drizzle-orm';
-import { db } from '../database';
 import { IUser } from '../interfaces/IUser';
 import { IUserModel } from '../interfaces/IUser';
 import { users } from '../schema';
+import { BaseModel } from '.';
+import { QueryBuilder } from '../helper/queryBuilder';
 
-export class UserModel implements IUserModel {
-  async getAllUsers(): Promise<IUser[]> {
-    return (await db.select().from(users).execute()) as IUser[];
-  }
-  async getUserById(id: number): Promise<IUser | null> {
-    return (await db.query.users.findFirst({
-      where: eq(users.id, id),
-    })) as IUser | null;
-  }
+export class UserModel extends BaseModel<typeof users> implements IUserModel {
+  protected table = users;
+
   async getUserByEmail(email: string): Promise<IUser | null> {
-    return (await db.query.users.findFirst({
-      where: eq(users.email, email),
-    })) as IUser | null;
-  }
-  async createUser(user: IUser): Promise<IUser> {
-    return (await db.insert(users).values(user).returning().execute())[0] as IUser;
-  }
-  async updateUser(id: number, user: IUser): Promise<IUser | null> {
-    return (await db.update(users).set(user).where(eq(users.id, id)).execute())[0] as IUser | null;
-  }
-  async deleteUser(id: number): Promise<void> {
-    await db.delete(users).where(eq(users.id, id)).execute();
+    return this.findOneByFilterQuery(new QueryBuilder().where('email', '=', email));
   }
 }
