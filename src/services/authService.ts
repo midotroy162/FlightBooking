@@ -8,11 +8,10 @@ import createToken from '../helper/createToken';
 import { IPlaneCompanyModel } from '../interfaces/IPlaneCompany';
 import { IPlaneCompany } from '../interfaces/IPlaneCompany';
 import { PlaneCompanyModel } from '../models/planeCompanyModel';
-import  bcrypt  from 'bcrypt';
+import bcrypt from 'bcrypt';
 import AccessToken from '../helper/createToken';
-  const accessToken = new AccessToken();
+const accessToken = new AccessToken();
 export class AuthService implements IAuthService {
-
   private userModel: IUserModel;
   constructor(userModel: IUserModel = new UserModel()) {
     this.userModel = userModel;
@@ -20,7 +19,7 @@ export class AuthService implements IAuthService {
   async signup(data: IUser): Promise<ServiceResponse<IUser>> {
     const hashedPassword = await bcrypt.hash(data.password, 10);
     data.password = hashedPassword;
-    let user = await this.userModel.createUser(data);
+    let user = await this.userModel.create(data);
     if (!user) {
       return createServiceResponse(false, 400, 'User creation failed', {} as IUser);
     }
